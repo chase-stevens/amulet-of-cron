@@ -10,5 +10,4 @@ class CheckMinutelyCronMonitorsJob
   end
 end
 
-
-Sidekiq::Cron::Job.create(name: 'Hard worker - every 1min', cron: '*/1 * * * *', class: 'CheckMinutelyCronMonitorsJob')
+Sidekiq::Cron::Job.create(name: "Hard worker - every 1min", cron: "*/1 * * * *", class: "CheckMinutelyCronMonitorsJob")

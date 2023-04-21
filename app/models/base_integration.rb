@@ -4,5 +4,4 @@ class BaseIntegration < ApplicationRecord
   def send_message
     raise NotImplementedError
   end
-
 end

@@ -63,9 +63,9 @@ class CronMonitorsController < ApplicationController
     check_in_service = CheckInCronMonitor.new(@cron_monitor).call
 
     if check_in_service
-      render plain: 'OK', status: :ok
+      render plain: "OK", status: :ok
     else
-      render plain: 'Something went wrong!', status: :bad_request
+      render plain: "Something went wrong!", status: :bad_request
     end
   end
 

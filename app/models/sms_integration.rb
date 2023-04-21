@@ -7,6 +7,5 @@ class SmsIntegration < ApplicationRecord
   belongs_to :account
 
   def send_message
-
   end
 end

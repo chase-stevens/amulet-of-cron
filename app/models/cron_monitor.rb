@@ -23,12 +23,12 @@ class CronMonitor < ApplicationRecord
   # WARNING: IF YOU ADD A NEW VALUE, ADD IT TO THE END!
   # OR EVERY EXISTING MONITOR'S INTERVAL WILL SHIFT!!
   # rails saves enums as ints based on position in the interval array
-  enum :interval, [ :monthly, :weekly, :daily, :hourly, :minutely ]
+  enum :interval, [:monthly, :weekly, :daily, :hourly, :minutely]
 
   after_create_commit -> { broadcast_prepend_later_to :cron_monitors, partial: "cron_monitors/index", locals: {cron_monitor: self} }
   after_update_commit -> {
     broadcast_replace_later_to self
-    broadcast_replace_to(:cron_monitor_index, target: "cron_monitor_index_#{id}", partial: "cron_monitors/cron_monitor_index_card", locals: { cron_monitor: self })
+    broadcast_replace_to(:cron_monitor_index, target: "cron_monitor_index_#{id}", partial: "cron_monitors/cron_monitor_index_card", locals: {cron_monitor: self})
   }
 
   after_destroy_commit -> { broadcast_remove_to :cron_monitors, target: dom_id(self, :index) }
@@ -36,7 +36,7 @@ class CronMonitor < ApplicationRecord
   belongs_to :account
   has_many :check_ins
 
-  STATE_SORT_ORDER = %w(down up draft)
+  STATE_SORT_ORDER = %w[down up draft]
 
   include AASM
 
@@ -64,7 +64,6 @@ class CronMonitor < ApplicationRecord
       transitions from: :down, to: :up
     end
   end
-
 
   def interval=(value)
     value = value.to_i if value.is_a? String

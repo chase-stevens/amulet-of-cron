@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     namespace :admin do
       if defined?(Sidekiq)
         require "sidekiq/web"
-        require 'sidekiq/cron/web'
+        require "sidekiq/cron/web"
         mount Sidekiq::Web => "/sidekiq"
       end
 
