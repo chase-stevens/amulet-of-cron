@@ -13,5 +13,7 @@ class SendSmsService
       to: @phone_number,
       body: @message
     )
+  rescue
+    false
   end
 end
