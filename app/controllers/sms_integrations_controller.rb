@@ -3,7 +3,7 @@ class SmsIntegrationsController < ApplicationController
 
   # GET /sms_integrations
   def index
-    @pagy, @sms_integrations = pagy(SmsIntegration.sort_by_params(params[:sort], sort_direction))
+    @pagy, @sms_integrations = pagy(current_account.sms_integrations.sort_by_params(params[:sort], sort_direction))
   end
 
   # GET /sms_integrations/1 or /sms_integrations/1.json
