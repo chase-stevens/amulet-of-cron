@@ -13,6 +13,8 @@ class SendSmsService
       to: @phone_number,
       body: @message
     )
+  # todo: think about error reporting for failed notifications
+  # and failed monitor checks
   rescue
     false
   end
