@@ -1,3 +1,5 @@
 <%# Place any links for the LEFT side of the nav bar here. Be sure to add class: "nav-link" to each item for proper spacing. %>
-<%= nav_link_to "Cron Monitors", cron_monitors_path, class: "nav-link" %>
-<%= nav_link_to "Sms Integrations", sms_integrations_path, class: "nav-link" %>
+<% if current_account %>
+  <%= nav_link_to "Cron Monitors", cron_monitors_path, class: "nav-link" %>
+  <%= nav_link_to "Sms Integrations", sms_integrations_path, class: "nav-link" %>
+<% end %>
