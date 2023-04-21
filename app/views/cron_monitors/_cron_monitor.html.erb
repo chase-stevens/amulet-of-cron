@@ -1,0 +1,18 @@
+<div id="<%= dom_id cron_monitor %>">
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Title</p>
+    <%= cron_monitor.title %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Aasm state</p>
+    <%= cron_monitor.aasm_state %><%= status_icon(cron_monitor.aasm_state) %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Interval</p>
+    <%= cron_monitor.interval %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Notes</p>
+    <%= cron_monitor.notes %>
+  </div>
+</div>

@@ -42,16 +42,25 @@ gem "image_processing", "~> 1.12"
 # Security update
 gem "nokogiri", ">= 1.12.5"
 
+gem "aasm", "~> 5.5.0"
+
+gem "sidekiq", "~> 7.0.7"
+
+gem 'twilio-ruby', '~> 5.76.0'
+
+gem "sidekiq-cron"
+
 group :development, :test do
   # Optional debugging tools
   # gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  # gem "pry-rails"
+  gem "pry-rails"
 
   gem "annotate", github: "excid3/annotate_models", branch: "rails7"
   gem "letter_opener_web", "~> 2.0"
   gem "standard", require: false
   gem "erb_lint", require: false
 
+  gem 'dotenv-rails'
   # Security tooling to
   # gem "brakeman"
   # gem "bundler-audit", github: "rubysec/bundler-audit"

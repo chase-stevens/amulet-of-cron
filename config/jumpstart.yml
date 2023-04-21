@@ -1,0 +1,17 @@
+--- !ruby/object:Jumpstart::Configuration
+application_name: Amulet of Cron
+business_name: Back In The Saddle LLC
+business_address: |-
+  1505 N. Central Ave
+  Phoenix, AZ, 85004
+domain: example.com
+default_from_email: Jumpstart <support@example.com>
+support_email: support@amuletofcron.com
+background_job_processor: async
+email_provider: ''
+personal_accounts: true
+solargraph: false
+register_with_account: false
+apns: false
+fcm: false
+collect_billing_address: false

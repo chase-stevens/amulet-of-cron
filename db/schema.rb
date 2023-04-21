@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_04_162609) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_19_101913) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -134,6 +134,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_162609) do
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
   end
 
+  create_table "check_ins", force: :cascade do |t|
+    t.bigint "cron_monitor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cron_monitor_id"], name: "index_check_ins_on_cron_monitor_id"
+  end
+
   create_table "connected_accounts", force: :cascade do |t|
     t.bigint "owner_id"
     t.string "provider"
@@ -147,6 +154,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_162609) do
     t.string "access_token_secret"
     t.string "owner_type"
     t.index ["owner_id", "owner_type"], name: "index_connected_accounts_on_owner_id_and_owner_type"
+  end
+
+  create_table "cron_monitors", force: :cascade do |t|
+    t.string "title"
+    t.string "aasm_state"
+    t.integer "interval", default: 0
+    t.text "notes"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_cron_monitors_on_account_id"
+  end
+
+  create_table "doodads", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_doodads_on_account_id"
+  end
+
+  create_table "incidents", force: :cascade do |t|
+    t.bigint "cron_monitor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cron_monitor_id"], name: "index_incidents_on_cron_monitor_id"
   end
 
   create_table "notification_tokens", force: :cascade do |t|
@@ -273,6 +307,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_162609) do
     t.boolean "charge_per_unit"
   end
 
+  create_table "sms_integrations", force: :cascade do |t|
+    t.string "phone_number"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_sms_integrations_on_account_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -320,7 +362,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_162609) do
   add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "api_tokens", "users"
+  add_foreign_key "check_ins", "cron_monitors"
+  add_foreign_key "cron_monitors", "accounts"
+  add_foreign_key "incidents", "cron_monitors"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
+  add_foreign_key "sms_integrations", "accounts"
 end

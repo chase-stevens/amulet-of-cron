@@ -1,0 +1,2 @@
+module SmsIntegrationsHelper
+end

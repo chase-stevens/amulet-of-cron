@@ -6,6 +6,9 @@
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
+every :minute do
+  rake "check_minutely_cron_monitors"
+end
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"

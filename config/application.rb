@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 require "jumpstart"
 
-module JumpstartApp
+module AmuletOfCronApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0

@@ -1,5 +1,10 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  resources :sms_integrations
+  resources :cron_monitors
+  resources :doodads
+  get ":id/check_in", to: "cron_monitors#check_in"
+
   draw :turbo
 
   # Jumpstart views
@@ -13,6 +18,7 @@ Rails.application.routes.draw do
     namespace :admin do
       if defined?(Sidekiq)
         require "sidekiq/web"
+        require 'sidekiq/cron/web'
         mount Sidekiq::Web => "/sidekiq"
       end
 
