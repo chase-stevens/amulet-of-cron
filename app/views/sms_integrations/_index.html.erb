@@ -1,6 +1,6 @@
 <div id="<%= dom_id(sms_integration, :index) %>">
   <%= turbo_stream_from sms_integration %>
   <%= render sms_integration %>
-  <%= link_to "View", sms_integration, class: "btn btn-white" %>
+  <%= link_to "Delete", sms_integration, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 </div>
 
