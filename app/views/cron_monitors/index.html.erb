@@ -7,11 +7,11 @@
       <h1 class="h3">Cron Monitors</h1>
 
       <div class="text-sm font-medium">
-        <span class="text-gray-500">Sort by:</span>
-        <%= sortable @cron_monitors, :title, "Title", class: "text-gray-700 mr-1" %>
-        <%= sortable @cron_monitors, :aasm_state, "Aasm state", class: "text-gray-700 mr-1" %>
-        <%= sortable @cron_monitors, :interval, "Interval", class: "text-gray-700 mr-1" %>
-        <%= sortable @cron_monitors, :notes, "Notes", class: "text-gray-700 mr-1" %>
+        <!-- <span class="text-gray-500">Sort by:</span> -->
+        <!-- TODO: currently down monitors are always on top -->
+        <!-- <%= sortable @cron_monitors, :title, "Title", class: "text-gray-700 mr-1" %> -->
+        <!-- TODO: sort intervals intelligently and not alphabetically -->
+        <!-- <%= sortable @cron_monitors, :interval, "Interval", class: "text-gray-700 mr-1" %> -->
       </div>
     </div>
 
