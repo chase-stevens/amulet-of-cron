@@ -5,7 +5,4 @@ class SmsIntegration < ApplicationRecord
   after_destroy_commit -> { broadcast_remove_to :sms_integrations, target: dom_id(self, :index) }
 
   belongs_to :account
-
-  def send_message
-  end
 end
