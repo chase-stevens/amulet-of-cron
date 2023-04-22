@@ -3,17 +3,17 @@
 
   <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control" %>
+    <%= form.text_field :title, class: "form-control max-w-sm" %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group  max-w-sm">
     <%= form.label :interval %>
     <%= form.select :interval, interval_select_options, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :notes %>
-    <%= form.text_field :notes, class: "form-control" %>
+    <%= form.text_field :notes, class: "form-control w-full max-w-sm" %>
   </div>
 
   <div>
