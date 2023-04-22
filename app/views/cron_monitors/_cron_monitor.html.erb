@@ -1,18 +1,20 @@
 <div id="<%= dom_id cron_monitor %>">
   <div class="mb-4">
-    <p class="text-sm font-medium text-gray-500">Title</p>
-    <%= cron_monitor.title %>
-  </div>
-  <div class="mb-4">
-    <p class="text-sm font-medium text-gray-500">Aasm state</p>
-    <%= cron_monitor.aasm_state %><%= status_icon(cron_monitor.aasm_state) %>
-  </div>
-  <div class="mb-4">
     <p class="text-sm font-medium text-gray-500">Interval</p>
     <%= cron_monitor.interval %>
   </div>
-  <div class="mb-4">
-    <p class="text-sm font-medium text-gray-500">Notes</p>
-    <%= cron_monitor.notes %>
-  </div>
+
+  <% if cron_monitor.notes.present? %>
+    <div class="mb-4">
+      <p class="text-sm font-medium text-gray-500">Notes</p>
+      <%= cron_monitor.notes %>
+    </div>
+  <% end %>
+
+  <% if cron_monitor.check_ins.present? %>
+    <div class="mb-4">
+      <p class="text-sm font-medium text-gray-500">Last Checked In At</p>
+      <%= cron_monitor.last_checked_in_at %>
+    </div>
+  <% end %>
 </div>

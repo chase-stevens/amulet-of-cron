@@ -84,4 +84,8 @@ class CronMonitor < ApplicationRecord
       1.month
     end
   end
+
+  def last_checked_in_at
+    check_ins.last.created_at
+  end
 end

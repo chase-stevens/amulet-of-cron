@@ -6,6 +6,7 @@
     <h1 class="h3">
       <%= link_to "Cron Monitors", cron_monitors_path, class: "text-black" %>
       <span class="text-gray-400 font-light mx-2">\</span>
+      <%= status_icon(@cron_monitor.aasm_state) %>
       <%= @cron_monitor.title %>
     </h1>
     <%= link_to t("edit"), edit_cron_monitor_path(@cron_monitor), class: "btn btn-white" %>
