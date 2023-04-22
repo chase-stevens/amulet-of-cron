@@ -1,0 +1,8 @@
+<div id="cron_monitor_title_<%= cron_monitor.id %>">
+  <h1 class="h3">
+    <%= link_to "Cron Monitors", cron_monitors_path, class: "text-black" %>
+    <span class="text-gray-400 font-light mx-2">\</span>
+    <%= status_icon(cron_monitor.aasm_state) %>
+    <%= cron_monitor.title %>
+  </h1>
+</div>
