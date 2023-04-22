@@ -1,0 +1,37 @@
+<%= content_for :title, "Email Integrations" %>
+<%= turbo_stream_from :email_integrations %>
+<%= turbo_stream_from :slack_integrations %>
+<%= turbo_stream_from :sms_integrations %>
+
+<div class="container px-4 mx-auto my-8">
+  <div class="flex items-center justify-between mb-4">
+    <div>
+      <h1 class="h3">Integrations</h1>
+    </div>
+
+    <!-- think this will work for now but little hacky -->
+    <%= link_to t("shared.scaffold.new.title", model: "Integration"), new_integration_path, class: "btn btn-white" %>
+  </div>
+
+  <%= tag.div id: ("integrations"), class: "bg-white rounded-md shadow p-6 space-y-8" do %>
+    <!-- forgive me lord for i have sinned -->
+    <!-- TODO: write good code here lol -->
+    <% @integrations.each do |integration| %>
+      <% if integration.is_a? EmailIntegration %>
+        <%= render partial: "email_integrations/index", collection: [*integration], as: :email_integration, cached: true %>
+      <% elsif integration.is_a? SlackIntegration %>
+        <%= render partial: "slack_integrations/index", collection: [*integration], as: :slack_integration, cached: true %>
+      <% elsif integration.is_a? SmsIntegration %>
+        <%= render partial: "sms_integrations/index", collection: [*integration], as: :sms_integration, cached: true %>
+      <% end %>
+    <% end %>
+
+    <div class="hidden only:flex flex-col items-center justify-between lg:flex-row">
+      <%= image_tag "empty.svg", class: "mb-4 lg:w-1/2" %>
+      <div class="flex-1 text-center">
+        <p class="mb-4 h3">Create your first Email Integration</p>
+        <%= link_to t("shared.scaffold.new.title", model: "Email Integration"), new_email_integration_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

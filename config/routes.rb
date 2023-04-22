@@ -1,6 +1,9 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  resources :sms_integrations
+  resources :integrations, only: [:index, :new]
+  resources :slack_integrations, only: [:index, :new, :create, :destroy]
+  resources :email_integrations, only: [:index, :new, :create, :destroy]
+  resources :sms_integrations, only: [:index, :new, :create, :destroy]
   resources :cron_monitors
   resources :doodads
   get ":id/check_in", to: "cron_monitors#check_in"

@@ -1,0 +1,6 @@
+<div id="<%= dom_id(email_integration, :index) %>">
+  <%= turbo_stream_from email_integration %>
+  <%= render email_integration %>
+  <%= link_to "Delete", email_integration, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
+

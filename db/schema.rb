@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_101913) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_22_055708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -176,6 +176,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_101913) do
     t.index ["account_id"], name: "index_doodads_on_account_id"
   end
 
+  create_table "email_integrations", force: :cascade do |t|
+    t.string "email"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_email_integrations_on_account_id"
+  end
+
   create_table "incidents", force: :cascade do |t|
     t.bigint "cron_monitor_id", null: false
     t.datetime "created_at", null: false
@@ -307,6 +315,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_101913) do
     t.boolean "charge_per_unit"
   end
 
+  create_table "slack_integrations", force: :cascade do |t|
+    t.string "channel"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_slack_integrations_on_account_id"
+  end
+
   create_table "sms_integrations", force: :cascade do |t|
     t.string "phone_number"
     t.bigint "account_id", null: false
@@ -364,9 +380,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_101913) do
   add_foreign_key "api_tokens", "users"
   add_foreign_key "check_ins", "cron_monitors"
   add_foreign_key "cron_monitors", "accounts"
+  add_foreign_key "email_integrations", "accounts"
   add_foreign_key "incidents", "cron_monitors"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
+  add_foreign_key "slack_integrations", "accounts"
   add_foreign_key "sms_integrations", "accounts"
 end

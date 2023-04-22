@@ -39,6 +39,8 @@ class Account < ApplicationRecord
   has_many :doodads
   has_many :cron_monitors
 
+  has_many :email_integrations
+  has_many :slack_integrations
   has_many :sms_integrations
 
   scope :personal, -> { where(personal: true) }
@@ -110,6 +112,14 @@ class Account < ApplicationRecord
   # Returns the quantity that should be on the subscription
   def per_unit_quantity
     account_users_count
+  end
+
+  def integrations
+    [
+      sms_integrations,
+      email_integrations,
+      slack_integrations
+    ].flatten
   end
 
   private

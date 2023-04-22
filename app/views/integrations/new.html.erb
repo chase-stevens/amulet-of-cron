@@ -1,0 +1,15 @@
+<div class="container px-4 mx-auto my-8">
+  <div class="flex items-center justify-between mb-4">
+    <h1 class="h3">
+      <%= link_to "Integrations", integrations_path, class: "text-black" %>
+      <span class="text-gray-400 font-light mx-2">\</span>
+      <%= t("shared.scaffold.new.title", model: "Integration") %>
+    </h1>
+  </div>
+
+  <div class="p-8 bg-white rounded shadow">
+    <%= render partial: "integrations/link_card", locals: {title: "Email", path: new_email_integration_path } %>
+    <%= render partial: "integrations/link_card", locals: {title: "Slack", path: new_slack_integration_path } %>
+    <%= render partial: "integrations/link_card", locals: {title: "SMS Text", path: new_sms_integration_path } %>
+  </div>
+</div>

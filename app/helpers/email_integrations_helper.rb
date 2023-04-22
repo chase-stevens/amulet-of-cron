@@ -1,0 +1,2 @@
+module EmailIntegrationsHelper
+end

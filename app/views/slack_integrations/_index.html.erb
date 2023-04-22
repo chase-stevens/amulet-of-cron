@@ -1,0 +1,6 @@
+<div id="<%= dom_id(slack_integration, :index) %>">
+  <%= turbo_stream_from slack_integration %>
+  <%= render slack_integration %>
+  <%= link_to "Delete", slack_integration, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
+
