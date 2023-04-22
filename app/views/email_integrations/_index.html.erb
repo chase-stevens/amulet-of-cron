@@ -1,6 +1,15 @@
 <div id="<%= dom_id(email_integration, :index) %>">
   <%= turbo_stream_from email_integration %>
-  <%= render email_integration %>
-  <%= link_to "Delete", email_integration, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <div class="border border-gray-400 rounded p-6 my-6">
+    <div class="flex flex-wrap items-center justify-between">
+      <div class="lg:flex-1">
+        <h3>📧 Email</h3>
+        <p><%= email_integration.email %></p>
+      </div>
+      <div class="lg:p-0 pt-4">
+      <%= link_to "Delete", email_integration, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
 </div>
 
