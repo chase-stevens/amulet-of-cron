@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  Rails.application.routes.default_url_options[:host] = 'https://amulet-of-cron-prod.herokuapp.com/'
+  Rails.application.routes.default_url_options[:host] = 'https://app.amuletofcron.com/'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
