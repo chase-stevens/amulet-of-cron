@@ -51,6 +51,7 @@ class CronMonitor < ApplicationRecord
 
     event :alert do
       after do
+        MonitorDownNotificationEmailService.new(self).call
         MonitorDownNotificationSmsService.new(self).call
       end
 
@@ -59,6 +60,7 @@ class CronMonitor < ApplicationRecord
 
     event :restore do
       after do
+        MonitorBackUpNotificationEmailService.new(self).call
         MonitorBackUpNotificationSmsService.new(self).call
       end
 

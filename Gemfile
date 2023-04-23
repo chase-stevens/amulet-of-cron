@@ -50,6 +50,8 @@ gem "twilio-ruby", "~> 5.76.0"
 
 gem "sidekiq-cron"
 
+gem 'sendgrid-ruby'
+
 group :development, :test do
   # Optional debugging tools
   # gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
