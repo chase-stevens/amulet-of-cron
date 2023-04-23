@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :sms_integrations, only: [:index, :new, :create, :destroy]
   resources :cron_monitors
   resources :doodads
-  get ":id/check_in", to: "cron_monitors#check_in"
+  get ":id/check_in", to: "cron_monitors#check_in", as: 'check_in'
 
   draw :turbo
 
