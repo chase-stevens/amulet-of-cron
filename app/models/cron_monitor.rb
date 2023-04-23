@@ -36,8 +36,8 @@ class CronMonitor < ApplicationRecord
   after_create_commit -> { broadcast_prepend_later_to :cron_monitors, partial: "cron_monitors/index", locals: {cron_monitor: self} }
   after_update_commit -> {
     broadcast_replace_later_to self
-    broadcast_replace_to(:cron_monitor_index, target: "cron_monitor_index_#{id}", partial: "cron_monitors/cron_monitor_index_card", locals: {cron_monitor: self})
-    broadcast_replace_to(:cron_monitor_title, target: "cron_monitor_title_#{id}", partial: "cron_monitors/cron_monitor_title", locals: {cron_monitor: self})
+    broadcast_replace_to(:cron_monitor_index, target: "cron_monitor_index_#{id}", partial: "cron_monitors/cron_monitor_index_card", locals: {cron_monitor: self} )
+    broadcast_replace_to(:cron_monitor_title, target: "cron_monitor_title_#{id}", partial: "cron_monitors/cron_monitor_title", locals: {cron_monitor: self} )
   }
 
   after_destroy_commit -> { broadcast_remove_to :cron_monitors, target: dom_id(self, :index) }

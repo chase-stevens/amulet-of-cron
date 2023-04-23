@@ -1,7 +1,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  HOST = 'localhost:3000'
+
+  Rails.application.routes.default_url_options[:host] = HOST
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -78,7 +80,7 @@ Rails.application.configure do
   config.hosts = nil
 
   # You may need to set to include the correct URLs from Turbo, etc
-  # config.action_controller.default_url_options = {host: "lvh.me", port: ENV.fetch("PORT", 3000).to_i}
+  config.action_controller.default_url_options = { host: HOST, port: ENV.fetch("PORT", 3000).to_i }
 
   config.i18n.raise_on_missing_translations = true
 end
