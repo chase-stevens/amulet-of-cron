@@ -1,4 +1,4 @@
-<%= content_for :title, "Cron Monitors ##{@cron_monitor.id}" %>
+<%= content_for :title, "Cron Monitor #{@cron_monitor.title}" %>
 <%= turbo_stream_from @cron_monitor %>
 <%= turbo_stream_from :cron_monitor_title%>
 
