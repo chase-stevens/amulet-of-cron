@@ -43,7 +43,8 @@ class CronMonitor < ApplicationRecord
   after_destroy_commit -> { broadcast_remove_to :cron_monitors, target: dom_id(self, :index) }
 
   belongs_to :account
-  has_many :check_ins
+  has_many :check_ins, dependent: :destroy
+  has_many :incidents, dependent: :destroy
 
   STATE_SORT_ORDER = %w[down up draft]
 
