@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  HOST = 'https://app.amuletofcron.com/'
+  HOST = 'https://app.amuletofcron.com'
 
   Rails.application.routes.default_url_options[:host] = HOST
   # Settings specified here will take precedence over those in config/application.rb.
