@@ -1,5 +1,7 @@
 <div id="<%= dom_id cron_monitor %>">
-  <% if cron_monitor.check_ins.blank? %>
+  <% if cron_monitor.down? %>
+    <%= render partial: "cron_monitors/missing_alert", locals:{ title: cron_monitor.title, check_in_url: check_in_url(cron_monitor.slug) } %>
+  <% elsif cron_monitor.check_ins.blank? %>
     <%= render partial: "cron_monitors/set_up_alert", locals:{ title: cron_monitor.title, check_in_url: check_in_url(cron_monitor.slug) } %>
   <% end %>
 
