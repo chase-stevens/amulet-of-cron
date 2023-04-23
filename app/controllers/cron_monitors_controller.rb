@@ -59,7 +59,7 @@ class CronMonitorsController < ApplicationController
 
   # GET /1/check_in
   def check_in
-    @cron_monitor = CronMonitor.find(params[:id])
+    @cron_monitor = CronMonitor.friendly.find(params[:id])
     check_in_service = CheckInCronMonitor.new(@cron_monitor).call
 
     if check_in_service
@@ -72,7 +72,7 @@ class CronMonitorsController < ApplicationController
   private
 
   def set_cron_monitor
-    @cron_monitor = current_account.cron_monitors.find(params[:id])
+    @cron_monitor = current_account.cron_monitors.friendly.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to cron_monitors_path
   end

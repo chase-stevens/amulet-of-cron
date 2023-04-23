@@ -1,6 +1,6 @@
-class CreateCronMonitors < ActiveRecord::Migration[7.0]
+class CreateCronMonitor < ActiveRecord::Migration[7.0]
   def change
-    create_table :cron_monitors do |t|
+    create_table :cron_monitors, id: :uuid do |t|
       t.string :title
       t.string :aasm_state
       t.integer :interval, default: 0

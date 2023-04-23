@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_22_055708) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_23_055832) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "account_invitations", force: :cascade do |t|
@@ -135,7 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_055708) do
   end
 
   create_table "check_ins", force: :cascade do |t|
-    t.bigint "cron_monitor_id", null: false
+    t.uuid "cron_monitor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cron_monitor_id"], name: "index_check_ins_on_cron_monitor_id"
@@ -156,7 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_055708) do
     t.index ["owner_id", "owner_type"], name: "index_connected_accounts_on_owner_id_and_owner_type"
   end
 
-  create_table "cron_monitors", force: :cascade do |t|
+  create_table "cron_monitors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "aasm_state"
     t.integer "interval", default: 0
@@ -164,7 +165,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_055708) do
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "friendly_path", null: false
+    t.string "slug"
     t.index ["account_id"], name: "index_cron_monitors_on_account_id"
+    t.index ["slug"], name: "index_cron_monitors_on_slug", unique: true
   end
 
   create_table "doodads", force: :cascade do |t|
@@ -184,8 +188,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_055708) do
     t.index ["account_id"], name: "index_email_integrations_on_account_id"
   end
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
   create_table "incidents", force: :cascade do |t|
-    t.bigint "cron_monitor_id", null: false
+    t.uuid "cron_monitor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cron_monitor_id"], name: "index_incidents_on_cron_monitor_id"

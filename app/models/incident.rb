@@ -5,7 +5,7 @@
 #  id              :bigint           not null, primary key
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  cron_monitor_id :bigint           not null
+#  cron_monitor_id :uuid             not null
 #
 # Indexes
 #

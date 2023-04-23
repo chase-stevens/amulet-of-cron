@@ -1,7 +1,7 @@
 class CreateIncident < ActiveRecord::Migration[7.0]
   def change
     create_table :incidents do |t|
-      t.references :cron_monitor, null: false, foreign_key: true
+      t.references :cron_monitor, null: false, foreign_key: true, type: :uuid
       t.timestamps
     end
   end

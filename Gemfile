@@ -52,6 +52,10 @@ gem "sidekiq-cron"
 
 gem 'sendgrid-ruby'
 
+gem 'slack-ruby-client'
+
+gem 'friendly_id', '~> 5.4.0'
+
 group :development, :test do
   # Optional debugging tools
   # gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

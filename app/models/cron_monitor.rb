@@ -2,28 +2,36 @@
 #
 # Table name: cron_monitors
 #
-#  id         :bigint           not null, primary key
-#  aasm_state :string
-#  interval   :integer          default("monthly")
-#  notes      :text
-#  title      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  account_id :bigint           not null
+#  id            :uuid             not null, primary key
+#  aasm_state    :string
+#  friendly_path :string           not null
+#  interval      :integer          default("monthly")
+#  notes         :text
+#  slug          :string
+#  title         :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  account_id    :bigint           not null
 #
 # Indexes
 #
 #  index_cron_monitors_on_account_id  (account_id)
+#  index_cron_monitors_on_slug        (slug) UNIQUE
 #
 # Foreign Keys
 #
 #  fk_rails_...  (account_id => accounts.id)
 #
+
 class CronMonitor < ApplicationRecord
+  include FriendlyId
+  friendly_id :friendly_path, use: :slugged
   # WARNING: IF YOU ADD A NEW VALUE, ADD IT TO THE END!
   # OR EVERY EXISTING MONITOR'S INTERVAL WILL SHIFT!!
   # rails saves enums as ints based on position in the interval array
   enum :interval, [:monthly, :weekly, :daily, :hourly, :minutely]
+
+  after_initialize :generate_friendly_path
 
   after_create_commit -> { broadcast_prepend_later_to :cron_monitors, partial: "cron_monitors/index", locals: {cron_monitor: self} }
   after_update_commit -> {
@@ -90,5 +98,9 @@ class CronMonitor < ApplicationRecord
 
   def last_checked_in_at
     check_ins.last.created_at
+  end
+
+  def generate_friendly_path
+    self.friendly_path = SecureRandom.urlsafe_base64(8)
   end
 end
