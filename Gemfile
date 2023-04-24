@@ -46,7 +46,7 @@ gem "aasm", "~> 5.5.0"
 
 gem "sidekiq", "~> 7.0.7"
 
-gem "twilio-ruby", "~> 5.76.0"
+gem "twilio-ruby", "~> 5.77.0"
 
 gem "sidekiq-cron"
 
