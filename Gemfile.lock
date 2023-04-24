@@ -198,7 +198,7 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
-    friendly_id (5.4.2)
+    friendly_id (5.5.0)
       activerecord (>= 4.0.0)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
@@ -527,7 +527,7 @@ DEPENDENCIES
   devise-i18n (~> 1.10)
   dotenv-rails
   erb_lint
-  friendly_id (~> 5.4.0)
+  friendly_id (~> 5.5.0)
   image_processing (~> 1.12)
   inline_svg (~> 1.6)
   invisible_captcha (~> 2.0)
