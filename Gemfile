@@ -54,7 +54,7 @@ gem 'sendgrid-ruby'
 
 gem 'slack-ruby-client'
 
-gem 'friendly_id', '~> 5.4.0'
+gem 'friendly_id', '~> 5.5.0'
 
 group :development, :test do
   # Optional debugging tools
