@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   resources :slack_integrations, only: [:index, :new, :create, :destroy]
   resources :email_integrations, only: [:index, :new, :create, :destroy]
   resources :sms_integrations, only: [:index, :new, :create, :destroy]
+  get "/cron_monitors/bulk_upload", to: "cron_monitors#bulk_upload_new", as: "bulk_upload"
+  post "/cron_monitors/bulk_upload", to: "cron_monitors#bulk_upload_create", as: "bulk_upload_create"
   resources :cron_monitors
   resources :doodads
-  get ":id/check_in", to: "cron_monitors#check_in", as: 'check_in'
+  get ":id/check_in", to: "cron_monitors#check_in", as: "check_in"
 
   draw :turbo
 

@@ -1,6 +1,6 @@
 <div id="<%= dom_id(cron_monitor, :index) %>">
   <%= turbo_stream_from :cron_monitor_index %>
-  
+
   <%= render partial: "cron_monitor_index_card", locals: { cron_monitor: cron_monitor } %>
 </div>
 

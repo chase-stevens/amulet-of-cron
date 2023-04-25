@@ -1,16 +1,16 @@
 <div id="cron_monitor_index_<%= cron_monitor.id %>">
   <div class="flex flex-row justify-between">
-    <div>
+    <div class="w-4/5 lg:w-2/5">
       <div>
         <%= status_icon(cron_monitor.aasm_state) %>
         <strong><%= cron_monitor.title %></strong>
       </div>
       <p class="text-sm font-medium text-gray-500"><%= cron_monitor.interval %></p>
     </div>
-    <div class="hidden md:flex">
+    <div class="w-2/5 hidden lg:flex">
       <%= check_in_url(cron_monitor.slug) %>
     </div>
-    <div>
+    <div class='flex justify-end w-1/5'>
       <%= link_to "View", cron_monitor, class: "btn btn-white" %>
     </div>
   </div>

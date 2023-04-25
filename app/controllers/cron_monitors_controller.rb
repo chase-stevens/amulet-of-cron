@@ -69,6 +69,22 @@ class CronMonitorsController < ApplicationController
     end
   end
 
+  # GET /cron_monitors/bulk_upload
+  def bulk_upload_new
+  end
+
+  # POST /cron_monitors/bulk_upload
+  def bulk_upload_create
+    schedule_yml = bulk_upload_params[:schedule_yml]
+    success = BulkUploadCreateCronMonitorsService.new(schedule_yml, current_account).call
+
+    if success
+      redirect_to cron_monitors_url, notice: "Cron Monitors created from YAML file!"
+    else
+      redirect_to bulk_upload_path, notice: "We were unable to upload your YAML file. Please check for any syntax errors and try again."
+    end
+  end
+
   private
 
   def set_cron_monitor
@@ -79,5 +95,9 @@ class CronMonitorsController < ApplicationController
 
   def cron_monitor_params
     params.require(:cron_monitor).permit(:title, :interval, :notes)
+  end
+
+  def bulk_upload_params
+    params.permit(:schedule_yml)
   end
 end

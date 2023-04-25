@@ -15,14 +15,17 @@
       </div>
     </div>
 
-    <%= link_to t("shared.scaffold.new.title", model: "Cron Monitor"), new_cron_monitor_path, class: "btn btn-white" %>
+    <div>
+      <%= link_to "Bulk Upload", bulk_upload_path, class: "btn btn-white" %>
+      <%= link_to t("shared.scaffold.new.title", model: "Cron Monitor"), new_cron_monitor_path, class: "btn btn-white" %>
+    </div>
   </div>
 
   <div class="flex flex-row justify-between mb-2">
     <div class="text-center px-6">
       <strong>Monitor</strong>
     </div>
-    <div class="text-center px-6 hidden md:flex">
+    <div class="text-center px-6 hidden lg:flex">
       <strong>Check In URL</strong>
     </div>
     <div class="text-center px-6">
