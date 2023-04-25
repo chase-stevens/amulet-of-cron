@@ -18,6 +18,18 @@
     <%= link_to t("shared.scaffold.new.title", model: "Cron Monitor"), new_cron_monitor_path, class: "btn btn-white" %>
   </div>
 
+  <div class="flex flex-row justify-between mb-2">
+    <div class="text-center px-6">
+      <strong>Monitor</strong>
+    </div>
+    <div class="text-center px-6 hidden md:flex">
+      <strong>Check In URL</strong>
+    </div>
+    <div class="text-center px-6">
+      <strong>Actions</strong>
+    </div>
+  </div>
+
   <%= tag.div id: ("cron_monitors" if first_page?), class: "bg-white rounded-md shadow p-6 space-y-8" do %>
     <%= render partial: "cron_monitors/index", collection: @cron_monitors, as: :cron_monitor, cached: true %>
 
