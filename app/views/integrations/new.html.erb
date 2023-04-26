@@ -9,7 +9,10 @@
 
   <div class="p-8 bg-white rounded shadow">
     <%= render partial: "integrations/link_card", locals: {title: "Email", path: new_email_integration_path } %>
-    <%= render partial: "integrations/link_card", locals: {title: "Slack", path: new_slack_integration_path } %>
+    <%= render partial: "integrations/under_construction_link_card", locals: { title: "Microsoft Teams" } %>
+    <%= render partial: "integrations/under_construction_link_card", locals: { title: "PagerDuty" } %>
+    <%= render partial: "integrations/under_construction_link_card", locals: { title: "Slack" } %>
     <%= render partial: "integrations/link_card", locals: {title: "Text Message", path: new_sms_integration_path } %>
+    <%= render partial: "integrations/under_construction_link_card", locals: { title: "Webhooks" } %>
   </div>
 </div>
