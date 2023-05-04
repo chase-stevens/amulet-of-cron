@@ -21,17 +21,19 @@
     </div>
   </div>
 
-  <div class="flex flex-row justify-between mb-2">
-    <div class="text-center px-6">
-      <strong>Monitor</strong>
+  <% if @cron_monitors.present? %>
+    <div class="flex flex-row justify-between mb-2">
+      <div class="text-center px-6">
+        <strong>Monitor</strong>
+      </div>
+      <div class="text-center px-6 hidden lg:flex">
+        <strong>Check In URL</strong>
+      </div>
+      <div class="text-center px-6">
+        <strong>Actions</strong>
+      </div>
     </div>
-    <div class="text-center px-6 hidden lg:flex">
-      <strong>Check In URL</strong>
-    </div>
-    <div class="text-center px-6">
-      <strong>Actions</strong>
-    </div>
-  </div>
+  <% end %>
 
   <%= tag.div id: ("cron_monitors" if first_page?), class: "bg-white rounded-md shadow p-6 space-y-8" do %>
     <%= render partial: "cron_monitors/index", collection: @cron_monitors, as: :cron_monitor, cached: true %>
